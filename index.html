@@ -3,22 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+    <title>Km.0 Radio Player</title>
     <style>
         body {
-            text-align: center;
+            margin: 0;
             font-family: Arial, sans-serif;
-            margin-top: 50px;
+            background-color: #a58d5d; /* Matching the brown color from the logo */
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
-        img {
-            max-width: 100%;
-            height: auto;
+
+        .logo {
+            margin-bottom: 20px;
+        }
+
+        .audio-player {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        button {
+            background-color: #fff;
+            border: none;
+            color: #a58d5d;
+            font-size: 16px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+
+        button:hover {
+            background-color: #ddd;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to My Website</h1>
-    <img src="logo.png" alt="Main Logo">
-    <p>This is the main logo of the page.</p>
+    <img src="https://via.placeholder.com/150" alt="Km.0 Logo" class="logo" width="150">
+    <div class="audio-player">
+        <audio id="audio" src="PLACEHOLDER_STREAM_URL" preload="none"></audio>
+        <button id="playPauseBtn">Play</button>
+        <input id="volumeControl" type="range" min="0" max="1" step="0.1" value="0.5">
+    </div>
+
+    <script>
+        const audio = document.getElementById('audio');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const volumeControl = document.getElementById('volumeControl');
+
+        playPauseBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                playPauseBtn.textContent = 'Pause';
+            } else {
+                audio.pause();
+                playPauseBtn.textContent = 'Play';
+            }
+        });
+
+        volumeControl.addEventListener('input', (e) => {
+            audio.volume = e.target.value;
+        });
+    </script>
 </body>
 </html>
